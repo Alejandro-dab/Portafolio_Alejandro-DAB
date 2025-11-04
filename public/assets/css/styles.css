@@ -1,0 +1,47 @@
+/* Importar fuentes: Nunito Sans, Montserrat y Lato */
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+body{
+    background: #000000; /*Partir de un fondo negro*/
+    background: linear-gradient(356deg, rgba(0, 0, 0, 1) 0%, rgb(2, 2, 39) 100%); /*Fondo con gradiente azul muy oscuro*/
+    min-height: 100vh; /*Ocupa toda la pantalla*/
+    margin: 0; /*Reseteamos los margenes del navegador*/
+    padding: 0; /*Reseteamos los padding del navegador*/
+    color: white; /*Texto blanco para que sea visible*/
+    overflow: hidden; /* Evita barras de scroll */
+    font-family: 'Lato';
+}
+
+#perfil{
+    border-radius: 50%;
+}
+
+/* Css necesario para animciones de Three.js */
+canvas {
+    display: block;
+    position: fixed; /* Fija el canvas al viewport */
+    top: 0;
+    left: 0;
+    z-index: 999; /* Lo pone DETRÁS de tu contenido */
+    pointer-events: none; /*Para que los clicks atraviesen el canvas*/
+}
+
+#info {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #555;
+    font-size: 1.5rem;
+    pointer-events: none; /* Esto también debe ser "invisible" a los clics */
+    z-index: 1000; /* Aseguramos que el texto 'Mueve el mouse' esté sobre el canvas */
+}
+
+/* Aquí puedes añadir los estilos de tu portafolio */
+.tu-contenido {
+    position: relative; /* Asegura que siga el flujo normal */
+    color: white;
+    text-align: center;
+    padding-top: 100px;
+}
+
+

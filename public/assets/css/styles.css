@@ -55,7 +55,7 @@ canvas {
     position: fixed; 
     top: 0;
     left: 0;
-    z-index: 999; 
+    z-index: 1; 
     pointer-events: none;
 }
 
@@ -146,7 +146,7 @@ section {
 
 /* NUEVO: Estilos para el canvas de ramificaciones */
 #hero-canvas {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;

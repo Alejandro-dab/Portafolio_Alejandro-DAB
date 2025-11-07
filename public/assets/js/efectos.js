@@ -9,9 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupHeroCanvas(); 
     setupScrollAnimations();
 
-    // --- ARREGLO PARA EL ZOOM y SCROLL ---
     // Forzamos manualmente una actualización de tamaño DESPUÉS de que todo se haya inicializado.
-    // Esto soluciona el "zoom descomunal" en recargas forzadas (Ctrl+Shift+R).
     // (Asegura que las funciones 'onWindowResize' y 'resizeHeroCanvas' estén definidas fuera de sus 'setup')
     if (typeof onWindowResize === 'function') {
         onWindowResize(); // Llama al resize de Three.JS
@@ -24,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.scrollTo(0, 0);
 });
 // ----------------------------------------------------------------------
-// 1. CÓDIGO DE THREE.JS (Estela de Humo)
+// 1. CÓDIGO DE THREE.JS (Estela de luz)
 // (Tu código original, organizado en funciones)
 // ----------------------------------------------------------------------
 
@@ -207,7 +205,7 @@ class Branch {
         this.y = y;
         this.canvasWidth = canvasWidth;
         this.canvasHeight = canvasHeight;
-        // Color HSL (Tono 240 es azul/morado, como tu --color-primary)
+        // Color HSL (Tono 240 es azul/morado, como --color-primary)
         this.hue = 240 + Math.random() * 60; // Tonos entre azul y magenta
         this.color = `hsl(${this.hue}, 100%, 70%)`;
         this.lineWidth = Math.random() * 2 + 1;
@@ -363,5 +361,5 @@ animateThreeJS();
 // Iniciar las animaciones del DOM (Scroll y Hero Canvas)
 document.addEventListener('DOMContentLoaded', () => {
     setupScrollAnimations();
-    setupHeroCanvas(); // <-- ¡NUEVA FUNCIÓN AÑADIDA!
+    setupHeroCanvas(); 
 });

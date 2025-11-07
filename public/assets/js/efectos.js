@@ -1,6 +1,28 @@
+
 // Importar CDN de la librería three.js
 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.157.0/build/three.module.js';
 
+document.addEventListener('DOMContentLoaded', () => {
+    
+    // --- INICIALIZADORES ---
+    initThreeJS();
+    setupHeroCanvas(); 
+    setupScrollAnimations();
+
+    // --- ARREGLO PARA EL ZOOM y SCROLL ---
+    // Forzamos manualmente una actualización de tamaño DESPUÉS de que todo se haya inicializado.
+    // Esto soluciona el "zoom descomunal" en recargas forzadas (Ctrl+Shift+R).
+    // (Asegura que las funciones 'onWindowResize' y 'resizeHeroCanvas' estén definidas fuera de sus 'setup')
+    if (typeof onWindowResize === 'function') {
+        onWindowResize(); // Llama al resize de Three.JS
+    }
+    if (typeof resizeHeroCanvas === 'function') { // Asegúrate de que 'resizeHeroCanvas' esté definida globalmente
+        resizeHeroCanvas(); // Llama al resize de los "gusanitos"
+    }
+    
+    // Forzar el scroll al inicio de la página en cada carga (movido al final)
+    window.scrollTo(0, 0);
+});
 // ----------------------------------------------------------------------
 // 1. CÓDIGO DE THREE.JS (Estela de Humo)
 // (Tu código original, organizado en funciones)
@@ -8,7 +30,7 @@ import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.157.0/build/three.m
 
 // --- Variables Globales de Three.js ---
 let scene, camera, renderer;
-let mouse = new THREE.Vector3(0, 0, 0); 
+let mouse = new THREE.Vector3(999, 999, 999); 
 let particles; 
 const PARTICLE_COUNT = 5000; 
 let positions = new Float32Array(PARTICLE_COUNT * 3);

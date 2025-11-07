@@ -319,11 +319,12 @@ section {
 }
 
 /* ---------------------------------------------------------------------- */
-/* 8. SECCIÓN HABILIDADES */
+/* 8. SECCIÓN HABILIDADES (ACTUALIZADO: ESFERAS 3D) */
 /* ---------------------------------------------------------------------- */
 .skills {
-    text-align: center; 
+    text-align: center; /* Centrar el H2 */
 }
+
 .skills-list {
     list-style: none;
     display: flex;
@@ -333,32 +334,76 @@ section {
     padding: 0;
     margin-top: 2rem;
 }
+
+/* CAMBIO: La esfera 3D */
 .skills-list li {
-    background-color: rgba(255, 255, 255, 0.08); 
-    border-radius: 50%; 
-    width: 100px;
-    height: 100px;
+    /* Posicionamiento para el brillo y el icono */
+    position: relative; 
     display: flex;
     justify-content: center;
     align-items: center;
+
+    width: 100px;
+    height: 100px;
     padding: 1rem;
-    border: 2px solid rgba(141, 141, 217, 0.3);
-    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+    
+    /* CAMBIO: El gradiente que simula la esfera */
+    /* Luz desde arriba a la izquierda (30% 30%) */
+     background: radial-gradient(circle at 30% 30%, 
+        rgba(170, 170, 230, 0.8), /* CAMBIO: Luz más brillante y opaca */
+        rgba(141, 141, 217, 0.4), /* CAMBIO: Medio más opaco */
+        rgba(2, 2, 39, 0.7) 80%   /* Sombra (el color de fondo --color-secondary) */
+    );
+    
+    border-radius: 50%; /* ¡La esfera! */
+    
+    /* CAMBIO: Sombra interna para dar profundidad */
+    box-shadow: 
+        inset 0 0 10px rgba(0, 0, 0, 0.5), /* Sombra interna oscura */
+        0 0 20px rgba(141, 141, 217, 0.5); /* CAMBIO: Brillo exterior más fuerte */
+
+    transition: transform 0.3s, box-shadow 0.3s;
 }
+
+/* CAMBIO: El "brillo" (reflejo de luz) */
+.skills-list li::before {
+    content: '';
+    position: absolute;
+    top: 10px;  /* Posición del reflejo */
+    left: 20px;
+    width: 30px; /* Tamaño del reflejo */
+    height: 15px;
+    background: rgba(255, 255, 255, 0.5); /* CAMBIO: Reflejo más opaco */
+    border-radius: 50%;
+    filter: blur(5px); /* Difuminado para suavizar */
+    transform: rotate(-30deg); /* Ángulo del reflejo */
+}
+
+
 .skills-list li:hover {
     transform: scale(1.1);
-    box-shadow: 0 0 15px var(--color-primary);
-    background-color: rgba(141, 141, 217, 0.15);
+    box-shadow: 
+        inset 0 0 10px rgba(0, 0, 0, 0.5),
+        0 0 25px var(--color-primary); /* Brillo exterior más intenso al pasar el mouse */
 }
+
+/* El icono dentro de la esfera */
 .skills-list img {
     width: 100%;
     height: auto;
-    max-width: 55px; 
+    max-width: 55px; /* Tamaño del icono */
     object-fit: contain;
+    /* CAMBIO: Poner el icono encima del brillo */
+    position: relative;
+    z-index: 2; 
+    /* Efecto sutil para el icono */
+    filter: drop-shadow(0 2px 2px rgba(0,0,0,0.5));
 }
-.skills-list img[alt="GitHub"],
-.skills-list img[alt="Railway"] {
-    filter: invert(1);
+
+/* Arreglo para iconos oscuros (GitHub/Railway) */
+.skills-list img[alt="GitHub"]{
+    /* Mantenemos el invertido y añadimos la sombra */
+    filter: invert(1) drop-shadow(0 2px 2px rgba(0,0,0,0.5));
 }
 
 /* ---------------------------------------------------------------------- */

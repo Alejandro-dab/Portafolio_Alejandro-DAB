@@ -243,8 +243,8 @@ function setupHeroCanvas() {
 
     // Ajustar tamaño del canvas a su contenedor
     function resizeCanvas() {
-        canvas.width = canvas.offsetWidth;
-        canvas.height = canvas.offsetHeight;
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
     }
 
     // Loop de animación para el hero canvas

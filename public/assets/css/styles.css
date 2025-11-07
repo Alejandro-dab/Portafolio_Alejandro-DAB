@@ -1,47 +1,588 @@
+/* ---------------------------------------------------------------------- */
+/* 1. FUENTES Y RESET BÁSICO */
+/* ---------------------------------------------------------------------- */
 /* Importar fuentes: Nunito Sans, Montserrat y Lato */
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
-body{
-    background: #000000; /*Partir de un fondo negro*/
-    background: linear-gradient(356deg, rgba(0, 0, 0, 1) 0%, rgb(2, 2, 39) 100%); /*Fondo con gradiente azul muy oscuro*/
-    min-height: 100vh; /*Ocupa toda la pantalla*/
-    margin: 0; /*Reseteamos los margenes del navegador*/
-    padding: 0; /*Reseteamos los padding del navegador*/
-    color: white; /*Texto blanco para que sea visible*/
-    overflow: hidden; /* Evita barras de scroll */
-    font-family: 'Lato';
+
+:root {
+    --color-primary: #8d8dd9; /* Un azul/morado más vibrante para acentos */
+    --color-secondary: #020227; /* Azul muy oscuro del gradiente */
+    --color-text: #e0e0e0; /* Gris claro para el texto principal */
+    --color-orange: #ff6600; /* Naranja para el botón secundario */
+    --color-background-start: #000000;
+    --color-background-end: rgb(2, 2, 39);
+    --font-heading: 'Montserrat', sans-serif;
+    --font-body: 'Lato', sans-serif;
 }
 
-#perfil{
-    border-radius: 50%;
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-/* Css necesario para animciones de Three.js */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--color-background-start);
+    background: linear-gradient(356deg, var(--color-background-start) 0%, var(--color-background-end) 100%);
+    color: var(--color-text);
+    min-height: 100vh;
+    font-family: var(--font-body); 
+    line-height: 1.6;
+    /* CAMBIO: No justificar texto globalmente */
+    text-align: left; 
+}
+
+/* Estilos de encabezados */
+h1, h2, h3 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: white;
+    margin-bottom: 0.5em;
+}
+
+h1 { font-size: 3rem; }
+h2 { font-size: 2.5rem; }
+h3 { font-size: 1.5rem; }
+
+/* ---------------------------------------------------------------------- */
+/* 2. ESTILOS DE TERCEROS (THREE.JS Y EFECTOS) */
+/* ---------------------------------------------------------------------- */
 canvas {
     display: block;
-    position: fixed; /* Fija el canvas al viewport */
+    position: fixed; 
     top: 0;
     left: 0;
-    z-index: 999; /* Lo pone DETRÁS de tu contenido */
-    pointer-events: none; /*Para que los clicks atraviesen el canvas*/
+    z-index: 999; 
+    pointer-events: none;
 }
 
-#info {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #555;
-    font-size: 1.5rem;
-    pointer-events: none; /* Esto también debe ser "invisible" a los clics */
-    z-index: 1000; /* Aseguramos que el texto 'Mueve el mouse' esté sobre el canvas */
+/* ---------------------------------------------------------------------- */
+/* 3. LAYOUT PRINCIPAL (FLEXBOX) */
+/* ---------------------------------------------------------------------- */
+
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
 }
 
-/* Aquí puedes añadir los estilos de tu portafolio */
-.tu-contenido {
-    position: relative; /* Asegura que siga el flujo normal */
-    color: white;
+section {
+    padding: 4rem 1rem;
+    min-height: 80vh; 
+}
+
+/* ---------------------------------------------------------------------- */
+/* 4. CABECERA Y NAVEGACIÓN (HEADER/NAV) */
+/* ---------------------------------------------------------------------- */
+
+.main-header {
+    position: sticky; 
+    top: 0;
+    z-index: 1000; /* Incrementado para estar sobre el canvas */
+    background-color: rgba(0, 0, 0, 0.8); 
+    backdrop-filter: blur(5px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    padding: 1rem 0;
+}
+
+.main-nav {
+    display: flex;
+    /* CAMBIO: Centrar la lista de navegación si el logo no está */
+    justify-content: center; 
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* Este estilo sigue aquí por si decides volver a poner el logo en el nav */
+.nav-logo {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+.nav-list {
+    list-style: none;
+    display: flex; 
+    flex-wrap: wrap; /* Añadido para responsividad extra */
+    justify-content: center; /* Centrar enlaces */
+    gap: 1.5rem;
+}
+
+.nav-list a {
+    text-decoration: none;
+    color: var(--color-text);
+    font-weight: 400;
+    padding: 0.5rem 0;
+    transition: color 0.3s ease, border-bottom 0.3s ease;
+    /* CAMBIO: Eliminado 'margin-left: 30px;' para que 'gap' controle el espacio */
+}
+
+.nav-list a:hover {
+    color: var(--color-primary);
+    border-bottom: 2px solid var(--color-primary);
+}
+
+/* ---------------------------------------------------------------------- */
+/* 5. SECCIÓN HERO/PRESENTACIÓN */
+/* ---------------------------------------------------------------------- */
+
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
-    padding-top: 100px;
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+}
+
+.hero h1 {
+    font-size: clamp(2.5rem, 8vw, 4.5rem); 
+    margin-bottom: 0.2em;
+    font-weight: 900;
+    text-shadow: 0 0 10px var(--color-primary);
+    text-align: center; /* Asegurar centrado */
+}
+
+.hero .subtitle {
+    font-size: clamp(1.2rem, 3vw, 2rem);
+    color: var(--color-primary);
+    margin-bottom: 2rem;
+    text-align: center; /* Asegurar centrado */
+}
+
+#perfil {
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    /* CAMBIO: Borde blanco (usando la variable de texto claro) */
+    border: 5px solid var(--color-text); 
+    box-shadow: 0 0 20px rgba(141, 141, 217, 0.5); 
+    transition: transform 0.5s ease;
+    margin-bottom: 1rem; /* Espacio antes del H1 */
+}
+
+#perfil:hover {
+    transform: scale(1.05) rotate(3deg);
+}
+
+/* ---------------------------------------------------------------------- */
+/* 6. SECCIÓN EXPERIENCIA */
+/* ---------------------------------------------------------------------- */
+
+.experience {
+    padding-top: 2rem;
+}
+
+.job-entry {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 2rem;
+    border-radius: 12px;
+    border-left: 5px solid var(--color-primary);
+    margin-top: 2rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* NUEVO: Estilos para la imagen de Citibanamex */
+.job-image {
+    display: block;
+    width: 100%;
+    max-width: 350px; /* Tamaño presentable */
+    margin: 1rem auto 2rem auto; /* Centrada y con espacio */
+    border-radius: 8px; /* Forma de tarjeta */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    object-fit: cover;
 }
 
 
+.job-meta {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 0.5rem 1.5rem;
+    font-size: 0.95rem;
+    color: #b0b0b0;
+    margin-bottom: 1rem;
+}
+
+.job-responsibilities {
+    list-style-type: none; 
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.job-responsibilities li {
+    padding-left: 1.5rem;
+    position: relative;
+    margin-bottom: 0.75rem;
+}
+
+.job-responsibilities li::before {
+    content: '→'; 
+    color: var(--color-primary);
+    font-weight: 700;
+    position: absolute;
+    left: 0;
+}
+
+/* ---------------------------------------------------------------------- */
+/* 7. SECCIÓN PROYECTOS */
+/* ---------------------------------------------------------------------- */
+
+.project-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.project-item {
+    flex: 1 1 300px; 
+    max-width: 400px;
+}
+
+.project-card {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 1.5rem;
+    border-radius: 12px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: background-color 0.3s, transform 0.3s;
+    border: 1px solid rgba(141, 141, 217, 0.3);
+}
+
+.project-card:hover {
+    background-color: rgba(141, 141, 217, 0.1);
+    transform: translateY(-5px);
+}
+
+.project-description {
+    color: #aaa;
+    margin-bottom: 1rem;
+    flex-grow: 1;
+}
+
+/* NUEVO: Contenedor para los botones */
+.project-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem; /* Espacio entre los botones */
+    margin-top: 1rem;
+}
+
+/* NUEVO: Estilo base de botones */
+.btn-primary, .btn-secondary {
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: background-color 0.3s, transform 0.1s, box-shadow 0.3s, color 0.3s, border-color 0.3s;
+    width: 100%;
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+/* NUEVO: Botón Primario (Morado) */
+.btn-primary {
+    background-color: var(--color-primary);
+    color: black;
+}
+
+.btn-primary:hover {
+    background-color: #a0a0ff; /* Tono más claro */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(141, 141, 217, 0.5);
+}
+
+/* NUEVO: Botón Secundario (Naranja) */
+.btn-secondary {
+    background-color: var(--color-orange);
+    color: #000000; /* Texto negro */
+    border: 2px solid var(--color-orange);
+}
+
+.btn-secondary:hover {
+    background-color: transparent; /* Fondo transparente al pasar el mouse */
+    color: var(--color-orange); /* Texto naranja */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(255, 102, 0, 0.4);
+}
+
+
+/* ---------------------------------------------------------------------- */
+/* 8. SECCIÓN HABILIDADES (NUEVO) */
+/* ---------------------------------------------------------------------- */
+.skills {
+    text-align: center; /* Centrar el H2 */
+}
+
+/* NUEVO: Estilo de la lista de esferas */
+.skills-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 0;
+    margin-top: 2rem;
+}
+
+/* NUEVO: La esfera */
+.skills-list li {
+    background-color: rgba(255, 255, 255, 0.08); /* Fondo de la "esfera" */
+    border-radius: 50%; /* ¡La esfera! */
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    border: 2px solid rgba(141, 141, 217, 0.3);
+    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+}
+
+.skills-list li:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px var(--color-primary);
+    background-color: rgba(141, 141, 217, 0.15);
+}
+
+/* NUEVO: El icono dentro de la esfera */
+.skills-list img {
+    width: 100%;
+    height: auto;
+    max-width: 55px; /* Tamaño del icono */
+    object-fit: contain;
+}
+
+/* ---------------------------------------------------------------------- */
+/* 9. SECCIÓN SOBRE MÍ (ACTUALIZADO) */
+/* ---------------------------------------------------------------------- */
+
+.about-me {
+    /* CAMBIO: Alinear sección a la izquierda */
+    text-align: left; 
+}
+
+.about-me h2 {
+    text-align: left; /* Asegurar que el H2 también esté a la izquierda */
+}
+
+/* NUEVO: Contenedor para el texto */
+.about-me-content {
+    max-width: 800px; /* Limitar ancho para legibilidad */
+    margin: 0; /* Alinear a la izquierda */
+}
+
+.about-me-content p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    color: var(--color-text);
+    text-align: left; /* Sin justificar */
+}
+
+
+/* ---------------------------------------------------------------------- */
+/* 10. SECCIÓN CONTACTO (NUEVO) */
+/* ---------------------------------------------------------------------- */
+.contact {
+    text-align: center;
+    padding-bottom: 6rem;
+}
+
+.contact h2 {
+    text-align: center;
+}
+
+.contact p {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.contact a {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 700;
+    border-bottom: 2px solid transparent;
+    transition: border-bottom 0.3s;
+}
+
+.contact a:hover {
+    border-bottom: 2px solid var(--color-primary);
+}
+
+
+/* ---------------------------------------------------------------------- */
+/* 11. FOOTER (ACTUALIZADO) */
+/* ---------------------------------------------------------------------- */
+
+.main-footer {
+    text-align: center;
+    padding: 1.5rem 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.85rem;
+    color: #888;
+}
+
+/* ---------------------------------------------------------------------- */
+/* 12. RESPONSIVIDAD (Media Queries) */
+/* ---------------------------------------------------------------------- */
+
+/* Pantallas Pequeñas (ej. móviles) */
+@media (max-width: 768px) {
+    
+    .main-nav {
+        flex-direction: column; 
+        text-align: center;
+        gap: 0.5rem;
+    }
+
+    .nav-list {
+        gap: 1rem;
+    }
+
+    section {
+        padding: 3rem 0.5rem;
+    }
+
+    .hero h1 {
+        font-size: 3rem;
+    }
+
+    .job-meta {
+        flex-direction: column; 
+    }
+
+    .project-item {
+        max-width: 100%; 
+        flex-basis: 100%; /* Asegurar que ocupe todo el ancho */
+    }
+
+    /* Ajustar esferas en móvil */
+    .skills-list li {
+        width: 80px;
+        height: 80px;
+    }
+    .skills-list img {
+        max-width: 40px;
+    }
+
+    /* Alinear texto de "Sobre Mí" en móvil */
+    .about-me, .about-me h2, .about-me-content p {
+        text-align: left;
+    }
+}
+
+/* ---------------------------------------------------------------------- */
+/* 13. ANIMACIONES DE REVELACIÓN (SCROLL) */
+/* ---------------------------------------------------------------------- */
+
+/* Estado inicial: Oculto y fuera de posición */
+.is-hidden {
+    opacity: 0;
+    /* Movemos el contenido un poco hacia abajo */
+    transform: translateY(20px); 
+    /* Añadimos un filtro de desenfoque inicial */
+    filter: blur(5px); 
+}
+
+/* Transición para un efecto suave */
+section {
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out, filter 0.8s ease-out;
+}
+
+/* Estado final: Animado (Visible) */
+.is-animated {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+}
+
+/* Además, animaremos el texto de la experiencia para que aparezca después de la tarjeta */
+.job-entry {
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    opacity: 0; 
+}
+
+/* Cuando la sección de experiencia esté animada, revelamos las entradas de trabajo */
+#experiencia.is-animated .job-entry {
+    opacity: 1;
+    transition-delay: 0.3s; 
+}
+
+/* Animamos las tarjetas de proyecto para que parezcan que entran */
+.project-card {
+    transition: background-color 0.3s, transform 0.3s, opacity 0.5s;
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+#proyectos.is-animated .project-card {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Retraso progresivo para las tarjetas de proyecto */
+#proyectos.is-animated .project-item:nth-child(1) .project-card {
+    transition-delay: 0.2s;
+}
+
+#proyectos.is-animated .project-item:nth-child(2) .project-card {
+    transition-delay: 0.4s;
+}
+
+/* Animación para las esferas de habilidades */
+.skills-list li {
+    opacity: 0;
+    transform: scale(0.5);
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.5s;
+}
+
+#habilidades.is-animated .skills-list li {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Retraso progresivo para las esferas */
+#habilidades.is-animated .skills-list li:nth-child(1) { transition-delay: 0.1s; }
+#habilidades.is-animated .skills-list li:nth-child(2) { transition-delay: 0.15s; }
+#habilidades.is-animated .skills-list li:nth-child(3) { transition-delay: 0.2s; }
+#habilidades.is-animated .skills-list li:nth-child(4) { transition-delay: 0.25s; }
+#habilidades.is-animated .skills-list li:nth-child(5) { transition-delay: 0.3s; }
+#habilidades.is-animated .skills-list li:nth-child(6) { transition-delay: 0.35s; }
+#habilidades.is-animated .skills-list li:nth-child(7) { transition-delay: 0.4s; }
+#habilidades.is-animated .skills-list li:nth-child(8) { transition-delay: 0.45s; }
+#habilidades.is-animated .skills-list li:nth-child(9) { transition-delay: 0.5s; }
+#habilidades.is-animated .skills-list li:nth-child(10) { transition-delay: 0.55s; }
+#habilidades.is-animated .skills-list li:nth-child(11) { transition-delay: 0.6s; }
+#habilidades.is-animated .skills-list li:nth-child(12) { transition-delay: 0.65s; }
+
+/* Animación para el texto "Sobre Mí" */
+.about-me-content p {
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+#sobre-mi.is-animated .about-me-content p {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+#sobre-mi.is-animated .about-me-content p:nth-child(1) { transition-delay: 0.2s; }
+#sobre-mi.is-animated .about-me-content p:nth-child(2) { transition-delay: 0.4s; }
+#sobre-mi.is-animated .about-me-content p:nth-child(3) { transition-delay: 0.6s; }

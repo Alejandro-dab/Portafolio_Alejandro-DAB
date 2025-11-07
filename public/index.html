@@ -3,24 +3,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portafolio Master</title>
-    <!-- Importar hoja de estilos css -->
+    <title>Portafolio Master | Alejandro Del Angel Bahena</title>
     <link rel="stylesheet" href="assets/css/styles.css">
-    
+    <!-- Importar iconos -->
+    <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" /> 
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                
+    
+    <header class="main-header">
+        <nav class="main-nav">
+            <!-- Quitamos el logo de aquí, ya que lo moviste al 'hero' -->
+            <ul class="nav-list">
+                <li><a href="#presentacion">Presentación</a></li>
+                <li><a href="#experiencia">Experiencia</a></li>
+                <li><a href="#proyectos">Proyectos</a></li>
+                <li><a href="#habilidades">Habilidades</a></li>
+                <li><a href="#sobre-mi">Sobre mi</a></li>
+                <li><a href="#contacto">Contacto</a></li>
             </ul>
         </nav>
     </header>
-    <h1>Alejandro Del Angel Bahena</h1>
-    <h2>Desarrollador Full Stack</h2>
-    <image src="/public/assets/images/Perfil.webp" id="perfil" alt="Foto de perfil"></image>
 
-    <!-- Importar libreria Three.js -->
-    <script type="module" src="./assets/js/efectos.js"></script>
+    <main>
+        <section id="presentacion" class="hero">
+            <img src="assets/images/Perfil.webp" id="perfil" alt="Foto de perfil de Alejandro Del Angel Bahena">
+            
+            <!-- CORRECCIÓN SEMÁNTICA: 
+                 La página debe tener un H1 (Encabezado Principal). 
+                 Usar un <a> no es semánticamente correcto para el título.
+                 El CSS que ya tenemos (hero h1) le dará el estilo grande. -->
+            <h1>Alejandro Del Angel Bahena</h1>
+            <p class="subtitle">Desarrollador Full Stack</p>
+        </section>
+
+        <section id="experiencia" class="experience">
+            <h2>Experiencia</h2>
+            <article class="job-entry">
+                <h3>Programador Analista</h3>
+                <p class="job-meta">
+                    <span class="company">Coltomex</span> | 
+                    <span class="project">Proyecto de migración Citibanamex/Citibank México</span> | 
+                    <span class="dates">2024</span>
+                </p>
+                
+                <!-- CORRECCIÓN DE VALIDACIÓN HTML:
+                     Una etiqueta <ul> (lista) SÓLO puede tener hijos <li> (elementos de lista).
+                     Poner una <img> directamente dentro de un <ul> es HTML inválido.
+                     La moví aquí, antes de la lista, y le di una clase para estilizarla. -->
+                <img src="assets/images/citibanamex.webp" class="job-image" alt="Separación de CitiBanamex">
+                
+                <ul class="job-responsibilities">
+                    <!-- La imagen ya no está aquí -->
+                    <li>Responsable de la gestión exclusiva de tres productos clave dentro del área de Ingeniería del Producto.</li>
+                    <li>Coordiné el flujo completo del pipeline de insumos proporcionados por el banco, desde su recepción hasta su validación final.</li>
+                    <li>Ejecución de pruebas funcionales (QA) en ambientes controlados, identificando y resolviendo inconsistencias de archivos. </li>
+                    <li>Liderazgo en la estandarización de la documentación técnica y funcional, lo que redujo las consultas operativas internas y mejoró la autonomía del equipo. </li>
+                    <li>Documenté cada fase del proyecto y gestioné el respaldo de archivos y evidencias utilizadas durante el desarrollo.</li>
+                    <li>Colaboración técnica con equipos multidisciplinarios (Equipos C, Java, Infraestructura, Procesos, Digitales, Producción) para asegurar la correcta implementación de los requerimientos del cliente.</li>
+                </ul>
+            </article>
+        </section>
+
+        <section id="proyectos" class="projects">
+            <h2>Proyectos</h2>
+            <div class="projects-container">
+                <ul class="project-list">
+                    <li class="project-item">
+                        <article class="project-card">
+                            <h3>Reelbox</h3>
+                            <p class="project-description">Catálogo de películas</p>
+                            
+                            <!-- MEJORA ESTRUCTURAL:
+                                 Agrupé los dos botones en un <div> 
+                                 para poder estilizarlos (ej. uno al lado del otro) fácilmente. -->
+                            <div class="project-links">
+                                <a href="https://reelbox-catalogopeliculas-production.up.railway.app" target="_blank" class="project-link">
+                                    <button class="btn-primary">Ir al Proyecto</button>
+                                </a>
+                                <a href="https://github.com/Alejandro-dab/Reelbox-Catalogo_peliculas.git" target="_blank" class="project-link">
+                                    <button class="btn-secondary">Ir al Repositorio</button>
+                                </a>
+                            </div>
+                        </article>
+                    </li>
+                    <li class="project-item">
+                        <article class="project-card">
+                            <h3>Login Register</h3>
+                            <p class="project-description">Sistema de autenticación/registro</p>
+                            <div class="project-links">
+                                <a href="https://loginregisterweb-production.up.railway.app" target="_blank" class="project-link">
+                                    <button class="btn-primary">Ir al Proyecto</button>
+                                </a>
+                                <a href="https://github.com/Alejandro-dab/Login_Register_Web.git" target="_blank" class="project-link">
+                                    <button class="btn-secondary">Ir al Repositorio</button>
+                                </a>
+                            </div>
+                        </article>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        
+        <section id="habilidades" class="skills">
+            <h2>Habilidades</h2>
+            <!-- La <article> no es estrictamente necesaria si solo contiene la lista, pero está bien. -->
+            <article>
+                <!-- MEJORA: Añadida clase a la lista para estilizarla -->
+                <ul class="skills-list">
+                    <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt="HTML5" title="HTML5" /></li>
+                    <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" alt="CSS3" title="CSS3" /></li>
+                    <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bootstrap/bootstrap-original.svg" alt="Bootstrap" title="Bootstrap" /></li>
+                    <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="JavaScript" title="JavaScript" /></li>
+                    <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg" alt="PHP" title="PHP" /></li>
+                    <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original-wordmark.svg" alt="MySQL" title="MySQL" /></li>
+                    <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg" alt="VS Code" title="VS Code" /></li>
+                    <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" alt="Git" title="Git" /></li>
+                    <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original-wordmark.svg" alt="GitHub" title="GitHub" /></li>
+                    <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/railway/railway-original.svg" alt="Railway" title="Railway" /></li>
+                    <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jira/jira-original-wordmark.svg" alt="Jira" title="Jira" /></li>
+                    <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/filezilla/filezilla-original.svg" alt="FileZilla" title="FileZilla" /></li>
+                </ul>
+            </article>
+        </section>
+
+        <section id="sobre-mi" class="about-me">
+            <h2>Sobre Mí</h2>
+            <!-- MEJORA: Envolver el texto en un div para centrarlo si es necesario -->
+            <div class="about-me-content">
+                <p>Soy un profesional enfocado en la resolución de problemas complejos
+                    y en la búsqueda de nuevos desafíos que impulsen mi desarrollo
+                    personal y profesional.
+                </p>
+                <p> 
+                    Valoro la sinceridad, la autenticidad y la inteligencia en las personas. 
+                    Entiendo la complejidad de la realidad y es por eso que estudio sobre
+                    diversos temas para aumentar mi comprensión del mundo y obtener
+                    más herramientas para enfrentarme a el. 
+                </p>
+                <p>
+                    Siempre tendré algún lenguaje de programación o tecnología “en
+                    proceso”, ya que disfruto aprender de forma autodidacta y me tomo
+                    mi profesión con seriedad y compromiso.
+                </p>
+            </div>
+        </section>
+
+        <!-- AÑADIDO: Sección de Contacto para que el enlace del menú funcione -->
+        <section id="contacto" class="contact">
+            <h2>Contacto</h2>
+            <p>Puedes contactarme en <a href="mailto:tu-correo-aqui@ejemplo.com">tu-correo-aqui@ejemplo.com</a></p>
+            <!-- Aquí podríamos añadir enlaces a LinkedIn, GitHub, etc. -->
+        </section>
+    </main>
+    
+    <footer class="main-footer">
+        <p>&copy; 2025 Alejandro Del Angel Bahena</p>
+    </footer>
+
+    <script type="module" src="assets/js/efectos.js"></script>
 </body>
 </html>

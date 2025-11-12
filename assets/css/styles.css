@@ -1,16 +1,10 @@
-/* ---------------------------------------------------------------------- */
-/* 1. FUENTES Y RESET BÁSICO */
-/* ---------------------------------------------------------------------- */
-/* Importar fuentes: Nunito Sans, Montserrat y Lato */
-@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
-
 :root {
     --color-primary: #8d8dd9; /* Un azul/morado más vibrante para acentos */
     --color-secondary: #020227; /* Azul muy oscuro del gradiente */
     --color-text: #e0e0e0; /* Gris claro para el texto principal */
     --color-orange: #ff6600; /* Naranja para el botón secundario */
     --color-background-start: #000000;
-    --color-background-end: rgb(2, 2, 39);
+    --color-background-end: rgb(1, 1, 20);
     --font-heading: 'Montserrat', sans-serif;
     --font-body: 'Lato', sans-serif;
 }
@@ -43,8 +37,8 @@ h1, h2, h3 {
     margin-bottom: 0.5em;
 }
 
-h1 { font-size: 3rem; }
-h2 { font-size: 2.5rem; }
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2.0rem; }
 h3 { font-size: 1.5rem; }
 
 /* ---------------------------------------------------------------------- */
@@ -177,8 +171,32 @@ section {
 .hero .subtitle {
     font-size: clamp(1.2rem, 3vw, 2rem);
     color: var(--color-primary);
-    margin-bottom: 2rem;
+    margin-bottom: 0.5rem;
     text-align: center; 
+}
+
+.hero .hero-slogan {
+    font-size: clamp(1rem, 2.5vw, 1.25rem); /* Un poco más pequeño */
+    color: var(--color-text); /* Color de texto normal (no el morado) */
+    font-weight: 300;         /* Fuente más delgada */
+    margin-bottom: 2rem;      /* Mantiene el espacio debajo */
+    text-align: center;
+    line-height: 1.4;         /* Mejor espacio entre líneas */
+    
+    /* Esto es para que se corte en dos líneas como en la foto */
+    max-width: 550px;         
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero .btn-cv {
+    margin-top: 2.5rem; /* Espacio para separarlo del eslogan */
+    
+    /* Evita que ocupe el 100% del ancho */
+    width: auto; 
+    padding-left: 2rem;
+    padding-right: 2rem;
+    text-decoration: none;
 }
 
 #perfil {
@@ -202,23 +220,26 @@ section {
 .experience {
     padding-top: 2rem;
 }
-.job-entry {
-    background-color: rgba(255, 255, 255, 0.05);
-    padding: 2rem;
-    border-radius: 12px;
-    border-left: 5px solid var(--color-primary);
-    margin-top: 2rem;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
-}
+
 .job-image {
     display: block;
-    width: 100%;
-    max-width: 350px; 
+    max-width: 400px; 
+    max-height: 250px;
     margin: 1rem auto 2rem auto; 
     border-radius: 8px; 
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
     object-fit: cover;
+    opacity: 0;
+    transform: translateX(-100px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
+
+#experiencia.is-animated .job-image {
+    opacity: 1;
+    transform: translateX(0);
+    transition-delay: 0.5s; /* Un buen retraso para que aparezca después de la sección */
+}
+
 .job-meta {
     display: flex;
     flex-wrap: wrap; 
@@ -254,12 +275,12 @@ section {
     flex-wrap: wrap; 
     justify-content: center;
     gap: 2rem;
-    margin-top: 2rem;
+    margin-top: 1rem;
 }
 
 .project-item {
     flex: 1 1 300px; 
-    max-width: 400px;
+    max-width: 500px;
 }
 
 .project-card {
@@ -272,6 +293,7 @@ section {
     justify-content: space-between;
     transition: background-color 0.3s, transform 0.3s;
     border: 1px solid rgba(141, 141, 217, 0.3);
+    height: 100%;
 }
 
 .project-card:hover {
@@ -279,10 +301,28 @@ section {
     transform: translateY(-5px);
 }
 
+/* Dentro de la sección de proyectos */
+.project-card-content .project-description {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem; /* Espacio antes de la imagen */
+    padding: 0 1rem;
+    color: var(--color-text-light);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.project-card-content .project-description p {
+    margin-bottom: 0.75rem;
+}
+
+.project-card-content .project-description strong {
+    color: var(--color-primary-light);
+}
+
 /* REGLA ÚNICA PARA ESTILIZAR LAS IMÁGENES */
 .project-img {
     width: 100%; /* Ocupa el 100% del ancho de la tarjeta */
-    height: 200px; /* Altura fija para que todas las tarjetas sean iguales */
+    height: 400px; /* Altura fija para que todas las tarjetas sean iguales */
     object-fit: contain; 
     border-radius: 6px; 
     margin-bottom: 1rem; /* Espacio antes de los botones */
@@ -427,81 +467,243 @@ section {
 }
 
 /* ---------------------------------------------------------------------- */
-/* 9. SECCIÓN SOBRE MÍ */
+/* 9. SECCIÓN SOBRE MÍ (REDESIGNADO CYBER) */
 /* ---------------------------------------------------------------------- */
-.experience {
-    padding-top: 2rem;
-}
-
 .about-me {
-    /* CAMBIO: Centrar el H2 */
-    text-align: center; 
+    text-align: center;
+    padding: 4rem 1rem; /* Más padding para la sección */
 }
 
 .about-me h2 {
-    /* CAMBIO: Centrar el H2 */
-    text-align: center; 
+    text-align: center;
+    margin-bottom: 4rem; /* Más espacio */
+    font-size: 2.8rem;
+    color: var(--color-heading);
+    position: relative;
+    display: inline-block; /* Para que el pseudo-elemento no ocupe todo el ancho */
 }
 
-/* NUEVO: Estilos para la imagen de Citibanamex con animación */
-.job-image {
-    display: block;
-    width: 100%;
-    max-width: 350px; 
-    margin: 1rem auto 2rem auto; 
-    border-radius: 8px; 
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-    object-fit: cover;
-
-    /* ANIMACIÓN: Estado inicial oculto a la izquierda */
-    opacity: 0;
-    transform: translateX(-100%); /* Desplazado completamente a la izquierda */
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out; /* Transición para ambos */
-}
-
-/* Cuando la sección de experiencia sea visible, la imagen se anima */
-#experiencia.is-animated .job-image {
-    opacity: 1;
-    transform: translateX(0); /* Vuelve a su posición original */
-    transition-delay: 0.3s; /* Un pequeño retraso para que no aparezca de golpe */
-}
-
-#perfil_1 {
-    float: left; /* Mantiene la imagen a la izquierda */
-    width: 220px; /* Hacemos la imagen un poco más grande (antes 180px) */
-    height: 220px;
-    object-fit: cover;
-    border-radius: 50%; /* Circular */
-    border: 4px solid var(--color-text); /* Borde blanco */
-    margin-right: 2.5rem; /* Aumentamos el espacio a la derecha para que el texto respire */
-    margin-bottom: 1.5rem; /* Espacio abajo */
-    margin-top: 1rem; /* Espacio arriba */
-    box-shadow: 0 0 18px rgba(141, 141, 217, 0.5); /* Sombra un poco más fuerte */
-    shape-outside: circle(50%);
+/* Efecto glitch/techy para el título */
+.about-me h2::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -10px; /* Debajo del texto */
+    transform: translateX(-50%);
+    width: 60%; /* Ancho de la línea */
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+    box-shadow: 0 0 15px var(--color-primary);
+    filter: blur(1px);
+    opacity: 0.7;
 }
 
 .about-me-content {
-    max-width: 800px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start; /* Alinea arriba para el diseño tipo 'terminal' */
+    gap: 4rem; /* Mayor espacio entre columnas */
+    max-width: 1200px; /* Un poco más ancho para el contenido */
     margin: 0 auto;
-    /* Es esencial para que el texto fluya alrededor del float */
-    overflow: hidden; 
-    /* NUEVO: Padding a la izquierda para empujar el texto si no está flotando */
-    text-align: left; 
-}
-
-/* NUEVO: Ajustes para los párrafos individuales */
-.about-me-content p {
-    font-size: 1.1rem;
-    margin-bottom: 1.5rem;
-    color: var(--color-text);
     text-align: left;
-    /* Aseguramos que los párrafos se comporten bien con el float */
-    clear: none; 
+    padding: 2rem;
+    background-color: rgba(2, 2, 39, 0.5); /* Fondo semitransparente oscuro */
+    border-radius: 12px;
+    border: 1px solid rgba(141, 141, 217, 0.3); /* Borde sutil */
+    box-shadow: 0 0 40px rgba(141, 141, 217, 0.2); /* Sombra externa más difusa */
+    position: relative; /* Para posibles efectos internos */
 }
 
-/* NUEVO: Para asegurar que el primer párrafo comience junto a la imagen */
-.about-me-content p:first-of-type {
-    margin-top: 0; 
+.about-me-text-column {
+    flex: 1 1 550px; /* Más espacio para el texto */
+    min-width: 300px; /* Mínimo para que no se achique demasiado */
+    padding-right: 1.5rem; /* Separación del borde derecho */
+}
+.about-me-text-column p {
+    font-size: 1.15rem; /* Texto un poco más grande */
+    margin-bottom: 1.8rem; /* Más espacio entre párrafos */
+    color: var(--color-text-light); /* Texto ligeramente más claro */
+    line-height: 1.6;
+}
+.about-me-text-column strong {
+    color: var(--color-primary-light); /* Las palabras clave resaltadas */
+    filter: drop-shadow(0 0 3px var(--color-primary));
+}
+
+.about-me-image-column {
+    flex: 0 1 350px; /* Columna más pequeña para la imagen y logo */
+    display: flex;
+    flex-direction: column; /* Apila imagen y logo */
+    justify-content: center;
+    align-items: center; /* Centra los elementos */
+    gap: 2rem; /* Espacio entre imagen y logo */
+    padding-left: 1.5rem; /* Separación del borde izquierdo */
+    border-left: 1px solid rgba(141, 141, 217, 0.2); /* Separador visual */
+}
+
+/* Contenedor para la imagen de perfil con efecto */
+.profile-image-container {
+    position: relative;
+    width: 300px; /* Tamaño de la imagen */
+    height: 300px;
+    border-radius: 50%;
+    overflow: hidden; /* Importante para el efecto */
+    box-shadow: 0 0 0 5px rgba(141, 141, 217, 0.4), /* Borde exterior sutil */
+                0 0 25px rgba(141, 141, 217, 0.8); /* Resplandor más intenso */
+    transition: box-shadow 0.3s ease-in-out;
+}
+.profile-image-container:hover {
+    box-shadow: 0 0 0 7px var(--color-primary-light),
+                0 0 40px var(--color-primary-light);
+}
+
+#perfil_1 {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+    filter: brightness(0.9) contrast(1.1); /* Efecto sutil para que se vea más 'tech' */
+    transition: filter 0.3s ease-in-out;
+}
+.profile-image-container:hover #perfil_1 {
+    filter: brightness(1) contrast(1); /* Vuelve a normal en hover */
+}
+
+/* Efecto "glitch" o destello sobre la imagen */
+.profile-image-effect-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, 
+                transparent 0%, transparent 60%, 
+                rgba(141, 141, 217, 0.2) 65%, 
+                rgba(141, 141, 217, 0.05) 75%, 
+                transparent 100%);
+    mix-blend-mode: overlay; /* O screen, lighten */
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    pointer-events: none; /* No bloquear eventos de ratón */
+}
+.profile-image-container:hover .profile-image-effect-overlay {
+    opacity: 1; /* Aparece en hover */
+    animation: pulse-overlay 1.5s infinite alternate; /* Animación de pulso */
+}
+
+@keyframes pulse-overlay {
+    from { transform: scale(1); opacity: 0.8; }
+    to { transform: scale(1.05); opacity: 1; }
+}
+
+
+/* Estilos para el logo del IPN */
+.ipn-logo-container {
+    flex-direction: column; 
+    height: auto;           
+    width: auto;            
+    min-width: 150px;       
+    padding: 1.5rem 1rem;   
+    text-align: center; /* ¡Esto lo centrará todo! */
+}
+.ipn-logo-container:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px var(--color-accent); /* Color de acento para el hover del logo */
+}
+
+.ipn-logo-container img {
+    width: 100px; 
+    height: 100px;
+    object-fit: contain;
+}
+
+.ipn-logo-container p {
+    color: #b0b0b0; /* Un gris sutil */
+    font-family: var(--font-heading); /* Fuente de títulos */
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-align: center;
+    margin: 0;
+    margin-top: 0.75rem; /* Espacio entre el logo y el texto */
+}
+
+/* BLOQUOTE FINAL (ajustado para el nuevo estilo) */
+.about-me-closer {
+    font-size: 1.25rem; /* Un poco más grande */
+    font-style: italic;
+    color: var(--color-primary-light); /* Color de acento */
+    max-width: 950px; /* Más ancho */
+    margin: 5rem auto 0 auto; /* Más espacio arriba */
+    padding: 2rem 2.5rem; /* Más padding */
+    border-left: 5px solid var(--color-primary); /* Borde más grueso */
+    background-color: rgba(141, 141, 217, 0.08); /* Fondo más intenso */
+    text-align: left;
+    line-height: 1.7;
+    border-radius: 0 10px 10px 0; /* Bordes más pronunciados */
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.3); /* Sombra sutil */
+    filter: drop-shadow(0 0 5px rgba(141, 141, 217, 0.2));
+}
+
+/* Animación de entrada para el nuevo párrafo y el about-me-closer */
+#sobre-mi.is-animated .about-me-text-column p {
+    opacity: 1;
+    transform: translateX(0);
+}
+#sobre-mi.is-animated .profile-image-container,
+#sobre-mi.is-animated .ipn-logo-container {
+    opacity: 1;
+    transform: translateY(0);
+}
+#sobre-mi.is-animated .about-me-closer {
+    opacity: 1;
+    transform: translateX(0);
+    transition-delay: 1s; /* Que aparezca al final */
+}
+
+
+/* MEDIA QUERIES (ajustadas para el nuevo diseño) */
+@media (max-width: 900px) { /* Punto de quiebre más temprano */
+    .about-me-content {
+        flex-direction: column-reverse; /* Imagen arriba, texto abajo en móviles */
+        padding: 1.5rem;
+    }
+    .about-me-text-column {
+        padding-right: 0;
+        text-align: center; /* Centrar texto en móvil */
+    }
+    .about-me-image-column {
+        padding-left: 0;
+        border-left: none; /* Eliminar el borde vertical */
+        margin-bottom: 2rem; /* Espacio entre imagen/logo y texto */
+    }
+    .about-me-closer {
+        padding: 1.5rem;
+        font-size: 1.1rem;
+        margin-top: 3rem;
+    }
+    .about-me h2 {
+        font-size: 2.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-image-container {
+        width: 250px;
+        height: 250px;
+    }
+    .ipn-logo-container {
+        width: 120px;
+        height: 120px;
+    }
+    .ipn-logo-container img {
+        width: 80px;
+        height: 80px;
+    }
 }
 
 /* ---------------------------------------------------------------------- */

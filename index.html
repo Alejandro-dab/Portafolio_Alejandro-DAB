@@ -4,10 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portafolio Master | Alejandro Del Angel Bahena</title>
+    <meta name="description" content="Portafolio de Alejandro Del Angel Bahena, Desarrollador Full Stack">
     <link rel="icon" type="icon" href="assets/images/A.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+    <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap">
+    </noscript>
     <link rel="stylesheet" href="assets/css/styles.css">
     <!-- Importar iconos -->
-    <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" /> 
+    <link rel="preload" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+    </noscript>
 </head>
 <body>
     <!-- Fondo -->
@@ -28,9 +40,13 @@
 
     <main>
         <section id="presentacion" class="hero">
-            <img src="assets/images/Perfil.webp" id="perfil" alt="Foto de perfil de Alejandro Del Angel Bahena">
+            <img src="assets/images/Perfil.webp" id="perfil" width="200px" height="200px" alt="Foto de perfil de Alejandro Del Angel Bahena" fetchpriority="high">
             <h1>Alejandro Del Angel Bahena</h1>
             <p class="subtitle">Desarrollador Full Stack</p>
+            <p class="hero-slogan">Construyendo aplicaciones web robustas, seguras y escalables desde cero hasta su despliegue</p>
+            <a href="assets/documents/CV_Alejandro_DAB.pdf" class="btn-primary btn-cv" download="CV_Alejandro_DAB.pdf">
+            Descargar CV
+        </a>
         </section>
 
         <section id="experiencia" class="experience">
@@ -40,18 +56,17 @@
                 <p class="job-meta">
                     <span class="company">Coltomex</span> | 
                     <span class="project">Proyecto de migración Citibanamex/Citibank México</span> | 
-                    <span class="dates">2024</span>
+                    <span class="dates">2024-2025</span>
                 </p>
                 
-                <img src="assets/images/citibanamex.webp" class="job-image" alt="Separación de CitiBanamex">
-                
+                <img src="assets/images/citibanamex.webp" class="job-image" width="400px" height="250px" alt="Separación de CitiBanamex" loading="lazy">
                 <ul class="job-responsibilities">
                     <li>Fui responsable de la gestión exclusiva de tres productos clave dentro del área de Ingeniería del Producto.</li>
                     <li>Coordiné el flujo completo del pipeline de insumos proporcionados por el banco, desde su recepción hasta su validación final.</li>
                     <li>Ejecución de pruebas funcionales (QA) en ambientes controlados, identificando y resolviendo inconsistencias de archivos. </li>
-                    <li>Liderazgo en la estandarización de la documentación técnica y funcional, lo que redujo las consultas operativas internas y mejoró la autonomía del equipo. </li>
+                    <li>Tuve el liderazgo en la estandarización de la documentación técnica y funcional, lo que redujo las consultas operativas internas y mejoró la autonomía del equipo. </li>
                     <li>Documenté cada fase del proyecto y gestioné el respaldo de archivos y evidencias utilizadas durante el desarrollo.</li>
-                    <li>Colaboración técnica con equipos multidisciplinarios (Equipos C, Java, Infraestructura, Procesos, Digitales, Producción) para asegurar la correcta implementación de los requerimientos del cliente.</li>
+                    <li>Realice colaboración técnica con equipos multidisciplinarios (Equipos C, Java, Infraestructura, Procesos, Digitales, Producción) para asegurar la correcta implementación de los requerimientos del cliente.</li>
                 </ul>
             </article>
         </section>
@@ -64,7 +79,10 @@
                         <article class="project-card">
                             <h3>Reelbox</h3>
                             <p class="project-description">Catálogo de películas</p>
-                            <img src="assets/images/Reelbox_0.webp" class="project-img" alt="Preview del proyecto Reelbox">
+                            <div class="project-description">
+                                <p><strong>Reelbox:</strong> Plataforma para catalogar y explorar películas, interactuando con la API de The Movie Database (TMDb). Permite a los usuarios marcar títulos como vistos y gestionar su colección personal.</p>
+                            </div>
+                            <img src="assets/images/Reelbox_0.webp" class="project-img" width="450px" height="400px" alt="Preview del proyecto Reelbox" loading="lazy">
                             <div class="project-links">
                                 <a href="https://reelbox-catalogopeliculas-production.up.railway.app" target="_blank" class="project-link">
                                     <button class="btn-primary">Ir al Proyecto</button>
@@ -79,7 +97,10 @@
                         <article class="project-card">
                             <h3>Login Register</h3>
                             <p class="project-description">Sistema de autenticación/registro</p>
-                            <img src="assets/images/Login_register_0.webp" class="project-img" alt="Preview del proyecto Login_register">
+                            <div class="project-description">
+                               <p><strong>Login Register:</strong> Sistema completo de autenticación y registro de usuarios con roles y gestión de sesiones. Incluye validación de datos y protección de rutas.</p>
+                            </div>
+                            <img src="assets/images/Login_register_0.webp" class="project-img" width="450px" height="400px" alt="Preview del proyecto Login_register" loading="lazy">
                             <div class="project-links">
                                 <a href="https://loginregisterweb-production.up.railway.app" target="_blank" class="project-link">
                                     <button class="btn-primary">Ir al Proyecto</button>
@@ -98,59 +119,78 @@
             <h2>Habilidades</h2>
             <article>
                 <ul class="skills-list">
-                    <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt="HTML5" title="HTML5" /></li>
-                    <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" alt="CSS3" title="CSS3" /></li>
-                    <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bootstrap/bootstrap-original.svg" alt="Bootstrap" title="Bootstrap" /></li>
-                    <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="JavaScript" title="JavaScript" /></li>
-                    <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg" alt="PHP" title="PHP" /></li>
-                    <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original-wordmark.svg" alt="MySQL" title="MySQL" /></li>
-                    <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg" alt="VS Code" title="VS Code" /></li>
-                    <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" alt="Git" title="Git" /></li>
-                    <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original-wordmark.svg" alt="GitHub" title="GitHub" /></li>
-                    <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/railway/railway-original.svg" alt="Railway" title="Railway" /></li>
-                    <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jira/jira-original.svg" alt="Jira" title="Jira" /></li>
-                    <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/filezilla/filezilla-original.svg" alt="FileZilla" title="FileZilla" /></li>
+                    <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt="HTML5" width="100px" height="100px" title="HTML5"/></li>
+                    <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" alt="CSS3" width="100px" height="100px" title="CSS3" /></li>
+                    <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bootstrap/bootstrap-original.svg" alt="Bootstrap" width="100px" height="100px" title="Bootstrap" /></li>
+                    <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="JavaScript" width="100px" height="100px" title="JavaScript" /></li>
+                    <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg" alt="PHP" width="100px" height="100px" title="PHP" /></li>
+                    <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original-wordmark.svg" alt="MySQL" width="100px" height="100px" title="MySQL" /></li>
+                    <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg" alt="VS Code" width="100px" height="100px" title="VS Code" /></li>
+                    <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" alt="Git" width="100px" height="100px" title="Git" /></li>
+                    <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original-wordmark.svg" alt="GitHub" width="100px" height="100px" title="GitHub" /></li>
+                    <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/railway/railway-original.svg" alt="Railway" width="100px" height="100px" title="Railway" /></li>
+                    <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jira/jira-original.svg" alt="Jira" width="100px" height="100px" title="Jira" /></li>
+                    <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/filezilla/filezilla-original.svg" alt="FileZilla" width="100px" height="100px" title="FileZilla" /></li>
                 </ul>
             </article>
         </section>
 
-        <section id="sobre-mi" class="about-me">
-            <h2>Sobre Mí</h2>
-            <div class="about-me-content">
-                <p>Soy un profesional enfocado en la resolución de problemas complejos
-                    y en la búsqueda de nuevos desafíos que impulsen mi desarrollo
-                    personal y profesional.
-                </p>
-                
-                <p>Soy un desarrollador Full Stack enfocado en la <strong>resolución de problemas complejos</strong>. 
-                    Siempre trabajo por objetivos, mi metodo se basa en estrategía y en poner un esfuerzo sobre humano
-                    de ser necesario. Por ejemplo: Estoy terminando este portafolio a las 09:35am
-                    con tal de no perder esta oportunidad.     
-                </p>
+    <section id="sobre-mi" class="about-me">
+    <h2>Sobre Mí</h2>
 
-                <img src="assets/images/Perfil_1.webp" id="perfil_1" alt="Foto de perfil de Alejandro Del Angel Bahena IPN">
+    <div class="about-me-content">
+        <div class="about-me-text-column">
+            <p>
+                Soy un profesional enfocado en la resolución de problemas complejos
+                y en la búsqueda de nuevos desafíos que impulsen mi desarrollo
+                personal y profesional.
+            </p>
+            <p>
+                Soy un desarrollador Full Stack enfocado en la <strong>resolución de problemas complejos</strong>. 
+                Siempre trabajo por objetivos, mi metodo se basa en estrategía y en poner un esfuerzo sobre humano
+                de ser necesario. Por ejemplo: Estoy terminando este portafolio a las 09:35am
+                con tal de no perder esta oportunidad.    
+            </p>
+            <p> 
+                Valoro la sinceridad, la autenticidad y la inteligencia en las personas. 
+                Entiendo la complejidad de la realidad y es por eso que estudio sobre
+                diversos temas para aumentar mi comprensión del mundo y obtener
+                más herramientas para enfrentarme a el. 
+            </p>
+            <p>
+                Siempre tendré algún lenguaje de programación o tecnología “en
+                proceso de aprendizaje”, ya que disfruto aprender de forma autodidacta y me tomo
+                mi profesión con seriedad y compromiso.
+            </p>
+        </div>
 
-                <p> 
-                    Valoro la sinceridad, la autenticidad y la inteligencia en las personas. 
-                    Entiendo la complejidad de la realidad y es por eso que estudio sobre
-                    diversos temas para aumentar mi comprensión del mundo y obtener
-                    más herramientas para enfrentarme a el. 
-                </p>
-
-                <p>
-                    Siempre tendré algún lenguaje de programación o tecnología “en
-                    proceso de aprendizaje”, ya que disfruto aprender de forma autodidacta y me tomo
-                    mi profesión con seriedad y compromiso.
-                </p>
-
-                <p>
-                    Creo que la felicidad es una emoción efímera, lo que importa es la plenitud. La plenitud es un estilo de vida, 
-                    en donde estas satisfecho con tu vida, sigues creciendo como persona, avanzas a tus objetivos y sobre todo puedes sobrellevar las adversidades de forma positiva.
-                    Y si estan leyendo esto, es porque creo fervientemente que puedo vivir en plenitud traajando con ustedes, porque para mi es mas que una forma de ganar el sustento, es una forma de vida. 
-                </p>
+        <div class="about-me-image-column">
+            <div class="profile-image-container">
+                <img src="assets/images/Perfil_1.webp" 
+                     id="perfil_1" 
+                     width="300" 
+                     height="300" 
+                     alt="Foto de perfil de Alejandro Del Angel Bahena IPN"
+                     loading="lazy">
+                <div class="profile-image-effect-overlay"></div>
             </div>
-        </section>
 
+            <div class="ipn-logo-container">
+                <img src="assets/images/ipn.webp" 
+                     alt="Logo del Instituto Politécnico Nacional" 
+                     width="150" 
+                     height="150" 
+                     loading="lazy">
+                <p>IPN - UPIICSA</p>
+            </div>
+        </div>
+    </div>
+
+    <blockquote class="about-me-closer">
+        "Creo que la felicidad es una emoción efímera, lo que importa es la plenitud. La plenitud es un estilo de vida, en donde estas satisfecho con tu vida, sigues creciendo como persona, avanzas a tus objetivos y sobre todo puedes sobrellevar las adversidades de forma positiva. Y si estan leyendo esto, es porque creo fervientemente que puedo vivir en plenitud trabajando con ustedes, porque para mi es mas que una forma de ganar el sustento, es una forma de vida."
+    </blockquote>
+
+</section>
         <!-- Sección de Contacto para que el enlace del menú funcione -->
         <section id="contacto" class="contact">
             <h2>Contacto</h2>
@@ -163,6 +203,6 @@
         <p>&copy; 2025 Alejandro Del Angel Bahena</p>
     </footer>
 
-    <script type="module" src="assets/js/efectos.js"></script>
+    <script type="module" src="assets/js/main.js"></script>
 </body>
 </html>

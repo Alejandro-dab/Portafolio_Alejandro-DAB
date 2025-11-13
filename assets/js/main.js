@@ -3,18 +3,26 @@
 document.addEventListener('DOMContentLoaded', () => {
     
     // --- INICIALIZADORES LIGEROS ---
-    setupHeroCanvas(); 
-    setupScrollAnimations();
+    setupScrollAnimations(); // Animaciones de scroll
     
-    // Forzamos manualmente una actualización de tamaño
-    if (typeof resizeHeroCanvas === 'function') {
-        resizeHeroCanvas(); // Llama al resize de los "gusanitos"
+    // Primero que se cargue el efecto de puntero y luego los gusanitos
+    loadEffectsInOrder();
+
+    async function loadEffectsInOrder() {
+        try {
+            const pointerModule = await import(`./pointerEffect.js?update=${Date.now()}`);
+            pointerModule.initPointerEffect(true); // pasamos flag "earlyStart"
+            setupHeroCanvas();
+            if (typeof resizeHeroCanvas === 'function') resizeHeroCanvas();
+        } catch (error) {
+            console.error("Error al cargar efectos:", error);
+        }
     }
 });
 
 // ----------------------------------------------------------------------
 // 1. LÓGICA CANVAS HERO (Ramificaciones 2D)
-// (Este es ligero y se queda aquí)
+// 
 // ----------------------------------------------------------------------
 
 class Branch {
@@ -134,21 +142,3 @@ function setupScrollAnimations() {
         console.error("Error en setupScrollAnimations:", error);
     }
 }
-
-// En main.js, DENTRO de document.addEventListener('DOMContentLoaded', () => { ... });
-
-    // Llamamos a la función de inmediato para que cargue en segundo plano
-    loadPointerEffect();
-
-    async function loadPointerEffect() {
-        try {
-            // Importación dinámica: Solo descarga este archivo cuando se llama a la función
-            const pointerModule = await import('./pointerEffect.js');
-            
-            // Una vez cargado, llama a la función que inicia todo
-            pointerModule.initPointerEffect();
-
-        } catch (error) {
-            console.error("No se pudo cargar el módulo del puntero:", error);
-        }
-    }

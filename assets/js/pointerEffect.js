@@ -6,7 +6,7 @@ import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.157.0/build/three.m
 let scene, camera, renderer;
 let mouse = new THREE.Vector3(999, 999, 999); 
 let particles; 
-const PARTICLE_COUNT = 5000; 
+const PARTICLE_COUNT = 1000; 
 let positions = new Float32Array(PARTICLE_COUNT * 3);
 let colors = new Float32Array(PARTICLE_COUNT * 3);
 let particleProperties = []; 
@@ -14,8 +14,9 @@ let currentParticleIndex = 0;
 let hue = 0; 
 const tempColor = new THREE.Color(); 
 
+let isAnimating = false; //Variable para evitar que Three.js se inicie varias veces
+
 function createParticleTexture() {
-    // ... (Tu función createParticleTexture va aquí sin cambios) ...
     const canvas = document.createElement('canvas');
     canvas.width = 64;
     canvas.height = 64;
@@ -40,7 +41,8 @@ function onWindowResize() {
 }
 
 function onMouseMove(event) {
-    if (!camera) return;
+    if (!camera || !event || typeof event.clientX !== 'number') return;
+
     const targetVector = new THREE.Vector3();
     targetVector.set(
         (event.clientX / window.innerWidth) * 2 - 1,
@@ -51,11 +53,16 @@ function onMouseMove(event) {
     const dir = targetVector.sub(camera.position).normalize();
     const distance = -camera.position.z / dir.z;
     const targetPosition = camera.position.clone().add(dir.multiplyScalar(distance));
-    mouse.lerp(targetPosition, 0.1);
-}
+    mouse.lerp(targetPosition, 0.12); //Suavnizamos la transición del mouse al valor objetivo
+} 
 
 function animateThreeJS() {
     if (!renderer || !scene || !camera || !particles) return;
+     if (isAnimating) {
+        // ya está corriendo: permitimos la recursividad natural del RAF
+    } else {
+        isAnimating = true;
+    }
     
     requestAnimationFrame(animateThreeJS); 
 
@@ -70,8 +77,12 @@ function animateThreeJS() {
         let index = currentParticleIndex;
         let prop = particleProperties[index];
         prop.life = 1.0; 
-        positionsArray[index * 3] = mouse.x;
-        positionsArray[index * 3 + 1] = mouse.y;
+        // Offset sutil para que las partículas “persigan” sin tocar el puntero
+        const offsetX = 0.3; // mover un poco a la derecha
+        const offsetY = -0.15; // mover un poco hacia abajo
+
+        positionsArray[index * 3] = mouse.x + offsetX;
+        positionsArray[index * 3 + 1] = mouse.y + offsetY;
         positionsArray[index * 3 + 2] = mouse.z;
         prop.velocity.set(
             (Math.random() - 0.5) * 0.1, 
@@ -88,7 +99,7 @@ function animateThreeJS() {
     for (let i = 0; i < PARTICLE_COUNT; i++) {
         let prop = particleProperties[i];
         if (prop.life > 0) {
-            prop.life -= 0.045;
+            prop.life -= 0.055;
             positionsArray[i * 3] += prop.velocity.x;
             positionsArray[i * 3 + 1] += prop.velocity.y;
             positionsArray[i * 3 + 2] += prop.velocity.z;
@@ -113,8 +124,13 @@ function animateThreeJS() {
 }
 
 // Esta es la función que exportaremos para ser llamada desde main.js
-export function initPointerEffect() {
+export function initPointerEffect(earlyStart = false) {
     try {
+        //Evitamos inicializar dos veces
+        if (renderer && renderer.domElement && document.body.contains(renderer.domElement)) {
+        console.warn("Pointer effect ya estaba activo, se omite duplicado.");
+        return;
+}
         scene = new THREE.Scene();
         camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         camera.position.z = 15; 
@@ -126,6 +142,15 @@ export function initPointerEffect() {
         renderer.setClearColor(0x000000, 0); 
         renderer.setSize(window.innerWidth, window.innerHeight);
         
+        // Estilamos el canvas para que siempre esté visible y no interfiera
+        renderer.domElement.style.position = 'fixed';
+        renderer.domElement.style.top = '0';
+        renderer.domElement.style.left = '0';
+        renderer.domElement.style.pointerEvents = 'none';
+        renderer.domElement.style.zIndex = '9999';
+        renderer.domElement.style.width = '100%';
+        renderer.domElement.style.height = '100%';
+
         if (document.body.firstChild) {
             document.body.insertBefore(renderer.domElement, document.body.firstChild);
         } else {
@@ -161,8 +186,20 @@ export function initPointerEffect() {
         particles = new THREE.Points(geometry, material);
         scene.add(particles);
 
-        window.addEventListener('resize', onWindowResize);
-        window.addEventListener('mousemove', onMouseMove);
+        //listeners (suena mejor en ingles)
+        window.addEventListener('resize', onWindowResize, {passive:true});
+        //Usamos wrapper para evitar errores, por si event no existe
+        window.addEventListener('mousemove', (e) => onMouseMove(e), {passive:true});
+
+        // Si earlyStart = true, fijamos posición inicial sin depender del movimiento real
+        if (earlyStart && camera) {
+            const vector = new THREE.Vector3(0, 0.31, 0); //a ver si ya no tapa mi nombre
+            vector.unproject(camera);
+            const dir = vector.sub(camera.position).normalize();
+            const distance = -camera.position.z / dir.z;
+            const position = camera.position.clone().add(dir.multiplyScalar(distance));
+            mouse.copy(position); // Fijamos la posición exacta del vector de arriba
+        }
 
         // Iniciamos la animación
         animateThreeJS();

@@ -66,7 +66,7 @@ main {
 }
 
 section {
-    padding: 4rem 1rem;
+    padding: 3rem 0.5rem;
 }
 
 /* ---------------------------------------------------------------------- */
@@ -265,6 +265,8 @@ section {
     position: absolute;
     left: 0;
 }
+
+
 
 /* ---------------------------------------------------------------------- */
 /* 7. SECCIÓN PROYECTOS */
@@ -467,7 +469,7 @@ section {
 }
 
 /* ---------------------------------------------------------------------- */
-/* 9. SECCIÓN SOBRE MÍ (REDESIGNADO CYBER) */
+/* 9. SECCIÓN SOBRE MÍ*/
 /* ---------------------------------------------------------------------- */
 .about-me {
     text-align: center;
@@ -666,20 +668,32 @@ section {
 }
 
 
-/* MEDIA QUERIES (ajustadas para el nuevo diseño) */
+/* MEDIA QUERIES */
 @media (max-width: 900px) { /* Punto de quiebre más temprano */
     .about-me-content {
         flex-direction: column-reverse; /* Imagen arriba, texto abajo en móviles */
         padding: 1.5rem;
     }
-    .about-me-text-column {
-        padding-right: 0;
-        text-align: center; /* Centrar texto en móvil */
-    }
     .about-me-image-column {
         padding-left: 0;
         border-left: none; /* Eliminar el borde vertical */
         margin-bottom: 2rem; /* Espacio entre imagen/logo y texto */
+        width: 100%; /* Ocupa todo el ancho disponible */
+        align-items: center; /* Centra sus elementos hijos horizontalmente */
+        text-align: center; /* Por si algún texto no es flex item */
+    }
+    .about-me-text-column {
+        padding-right: 0; /* Aseguramos que no haya padding extra a la derecha */
+        text-align: left; /* <-- Lo regresamos a la izquierda para mejor lectura */
+        width: 100%;      /* <-- Le decimos que ocupe todo el ancho disponible */
+        box-sizing: border-box; /* Aseguramos que el padding no desborde */
+    }
+    .about-me-text-column p {
+        font-size: 1.15rem; 
+        margin-bottom: 1.8rem;
+        color: var(--color-text-light);
+        line-height: 1.6;
+        text-align: left; /* <-- Aseguramos que el texto esté alineado a la izquierda */
     }
     .about-me-closer {
         padding: 1.5rem;
@@ -697,13 +711,32 @@ section {
         height: 250px;
     }
     .ipn-logo-container {
-        width: 120px;
-        height: 120px;
+        flex-direction: column;
+        height: auto;
+        width: auto;
+        min-width: 150px;
+        padding: 1.5rem 1rem;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto ;
+
     }
     .ipn-logo-container img {
         width: 80px;
         height: 80px;
     }
+
+    .ipn-logo-container p {
+    color: #b0b0b0; 
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-align: center; 
+    margin: 0;
+    margin-top: 0.75rem; 
+}
 }
 
 /* ---------------------------------------------------------------------- */
@@ -772,6 +805,25 @@ section {
 
     .job-meta {
         flex-direction: column; 
+        gap: 0.5rem;
+        align-items: flex-start;
+    }
+
+    /* Aseguramos que los <li> de responsabilidades no tengan padding extra */
+    .job-responsibilities li {
+        padding-left: 1rem; /* Reducimos el padding para pantallas pequeñas */
+        margin-bottom: 0.5rem; /* Menos espacio entre ítems */
+    }
+    .job-responsibilities li::before {
+        left: -0.2rem; /* Ajustamos la posición de la flecha si es necesario */
+    }
+
+    /* Aseguramos que la imagen del trabajo no se desborde */
+    .job-image {
+        max-width: 100%; /* La imagen ocupa todo el ancho disponible */
+        height: auto;    /* La altura se ajusta para mantener la proporción */
+        margin-left: 0;
+        margin-right: 0;
     }
 
     .project-item {
@@ -787,7 +839,7 @@ section {
         max-width: 40px;
     }
 
-    .about-me, .about-me h2, .about-me-content p {
+    .about-me, .about-me h2{
         text-align: left;
     }
 }

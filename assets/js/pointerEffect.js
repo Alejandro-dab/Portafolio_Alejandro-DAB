@@ -123,6 +123,7 @@ function animateThreeJS() {
     renderer.render(scene, camera);
 }
 
+
 // Esta es la función que exportaremos para ser llamada desde main.js
 export function initPointerEffect(earlyStart = false) {
     try {
@@ -200,6 +201,8 @@ export function initPointerEffect(earlyStart = false) {
             const position = camera.position.clone().add(dir.multiplyScalar(distance));
             mouse.copy(position); // Fijamos la posición exacta del vector de arriba
         }
+
+        if (window.innerWidth < 768) return;
 
         // Iniciamos la animación
         animateThreeJS();

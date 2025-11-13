@@ -106,7 +106,7 @@ function setupHeroCanvas() {
 
 // ----------------------------------------------------------------------
 // 2. LÓGICA DE SCROLL (Animaciones de Entrada Simples)
-// (Este también es ligero y se queda)
+// 
 // ----------------------------------------------------------------------
 function setupScrollAnimations() {
     try {
@@ -128,7 +128,7 @@ function setupScrollAnimations() {
                     entry.target.classList.add('is-animated');
                     // observer.unobserve(entry.target); // Descomenta si solo quieres que se anime una vez
                 } else {
-                    entry.target.classList.remove('is-animated'); // Comenta si solo quieres una vez
+                    entry.target.classList.remove('is-animated'); 
                 }
             });
         }, observerOptions);

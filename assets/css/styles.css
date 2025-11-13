@@ -782,9 +782,14 @@ section {
 /* 12. RESPONSIVIDAD (Media Queries) */
 /* ---------------------------------------------------------------------- */
 
-/* Pantallas Pequeñas (ej. móviles) */
+/* Pantallas Pequeñas (móviles) */
 @media (max-width: 768px) {
     
+    /* Con esto el efecto de puntero no aparece en movil, no debe aparecer */
+    canvas {
+    display: none !important;
+    }
+
     .main-nav {
         flex-direction: column; 
         text-align: center;

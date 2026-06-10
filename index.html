@@ -37,9 +37,11 @@
     <!-- End Google Tag Manager (noscript) -->
     <!-- Fondo -->
     <canvas id="hero-canvas"></canvas>
+    <!-- HEADER -->
     <header class="main-header">
+        <!-- Barra de navegación -->
         <nav class="main-nav">
-            <!-- Quitamos el logo de aquí, ya que lo moviste al 'hero' -->
+            <!-- Lista del nav -->
             <ul class="nav-list">
                 <li><a href="#presentacion">Presentación</a></li>
                 <li><a href="#experiencia">Experiencia</a></li>
@@ -51,17 +53,21 @@
         </nav>
     </header>
 
+    <!-- Sección principal -->
     <main>
         <section id="presentacion" class="hero">
+            <!-- Foto de perfil -->
             <img src="assets/images/Perfil.webp" id="perfil" width="200px" height="200px" alt="Foto de perfil de Alejandro Del Angel Bahena" fetchpriority="high">
             <h1>Alejandro Del Angel Bahena</h1>
             <p class="subtitle">Desarrollador Web Full Stack</p>
             <p class="hero-slogan">Construyendo aplicaciones web robustas, seguras y escalables desde cero hasta su despliegue.</p>
+            <!-- Descargar CV actualizado -->
             <a href="assets/documents/CV_Alejandro_Del_Angel_Bahena_FullStack.pdf" class="btn-primary btn-cv" download="CV_Alejandro_Del_Angel_Bahena_FullStack">
             Descargar CV
         </a>
         </section>
 
+        <!-- Experiencia profesional -->
         <section id="experiencia" class="experience">
             <h2>Experiencia</h2>
             <article class="job-entry">
@@ -84,6 +90,7 @@
             </article>
         </section>
 
+        <!-- PROYECTOS -->
         <section id="proyectos" class="projects">
             <h2>Proyectos</h2>
             <div class="projects-container">
@@ -124,10 +131,30 @@
                             </div>
                         </article>
                     </li>
+                    <li>
+                        <article class="project-card">
+                            <h3>Inventario de Obra</h3>
+                            <p class="project-description">CRUD Vue-Node.js</p>
+                            <div class="project-description">
+                                <p><strong>Inventario de Obra:</strong> Sistema de Inventario de Obra es una aplicación web Full-Stack diseñada para el control administrativo de insumos y materiales de construcción.</p>
+                                <p>Este proyecto representa una implementación moderna de la arquitectura SPA (Single Page Application), desacoplando completamente la lógica del servidor (**Backend API**) de la interfaz de usuario (**Frontend-Vue**), garantizando una experiencia fluida, escalable y mantenible.</p>
+                            </div>
+                            <img src="assets/images/Vue-Interfaz.webp" class="project-img" width="450px" height="400px" alt="Preview del proyecto Inventario de Obra" loading="lazy">
+                            <div class="project-links">
+                                <a href="" target="_blank" class="project-link">
+                                    <button class="btn-primary">Deployment en progreso</button>
+                                </a>
+                                <a href="https://github.com/Alejandro-dab/CRUD-Node.js-Vue.git" target="_blank" class="project-link">
+                                    <button class="btn-secondary">Ir al Repositorio</button>
+                                </a>
+                            </div>
+                        </article>
+                    </li>
                 </ul>
             </div>
         </section>
         
+        <!-- HABILIDADES -->
         <section id="habilidades" class="skills">
             <h2>Habilidades</h2>
             <article>
@@ -151,59 +178,60 @@
             </article>
         </section>
 
-    <section id="sobre-mi" class="about-me">
-    <h2>Sobre Mí</h2>
-
-    <div class="about-me-content">
-        <div class="about-me-text-column">
-            <p>
-                Soy un desarrollador Full Stack enfocado en la <strong>resolución de problemas complejos</strong>. 
-                y en la búsqueda de nuevos desafíos que impulsen mi desarrollo
-                personal y profesional.
-                Siempre trabajo por objetivos, mi metodo se basa en estrategía y en poner un esfuerzo sobre humano, programando 
-                al amanecer de ser necesario.
-            </p>
-            <p> 
-                Valoro la sinceridad, la autenticidad y la inteligencia en las personas. 
-                Entiendo la complejidad de la realidad y es por eso que estudio sobre
-                diversos temas para aumentar mi comprensión del mundo y obtener
-                más herramientas para enfrentarme a el. 
-            </p>
-            <p>
-                Siempre tendré algún lenguaje de programación o tecnología “en
-                proceso de aprendizaje”, ya que disfruto aprender de forma autodidacta y me tomo
-                mi profesión con seriedad y compromiso.
-            </p>
-        </div>
-
-        <div class="about-me-image-column">
-            <div class="profile-image-container">
-                <img src="assets/images/Perfil_1.webp" 
-                     id="perfil_1" 
-                     width="300" 
-                     height="300" 
-                     alt="Foto de perfil de Alejandro Del Angel Bahena IPN"
-                     loading="lazy">
-                <div class="profile-image-effect-overlay"></div>
+        <!-- SOBRE MI -->
+        <section id="sobre-mi" class="about-me">
+        <h2>Sobre Mí</h2>
+        <div class="about-me-content">
+            <div class="about-me-text-column">
+                <p>
+                    Soy un desarrollador Full Stack enfocado en la <strong>resolución de problemas complejos</strong>. 
+                    y en la búsqueda de nuevos desafíos que impulsen mi desarrollo
+                    personal y profesional.
+                    Siempre trabajo por objetivos, mi metodo se basa en estrategía y en poner un esfuerzo sobre humano, programando 
+                    al amanecer de ser necesario.
+                </p>
+                <p> 
+                    Valoro la sinceridad, la autenticidad y la inteligencia en las personas. 
+                    Entiendo la complejidad de la realidad y es por eso que estudio sobre
+                    diversos temas para aumentar mi comprensión del mundo y obtener
+                    más herramientas para enfrentarme a el. 
+                </p>
+                <p>
+                    Siempre tendré algún lenguaje de programación o tecnología “en
+                    aprendizaje”, ya que disfruto aprender de forma autodidacta y me tomo
+                    mi profesión con seriedad y compromiso.
+                </p>
             </div>
 
-            <div class="ipn-logo-container">
-                <img src="assets/images/Ipn.webp" 
-                     alt="Logo del Instituto Politécnico Nacional" 
-                     width="150" 
-                     height="150" 
-                     loading="lazy">
-                <p>IPN - UPIICSA</p>
+            <div class="about-me-image-column">
+                <div class="profile-image-container">
+                    <img src="assets/images/Perfil_1.webp" 
+                        id="perfil_1" 
+                        width="300" 
+                        height="300" 
+                        alt="Foto de perfil de Alejandro Del Angel Bahena IPN"
+                        loading="lazy">
+                    <div class="profile-image-effect-overlay"></div>
+                </div>
+
+                <div class="ipn-logo-container">
+                    <img src="assets/images/Ipn.webp" 
+                        alt="Logo del Instituto Politécnico Nacional" 
+                        width="150" 
+                        height="150" 
+                        loading="lazy">
+                    <p>IPN - UPIICSA</p>
+                </div>
             </div>
         </div>
-    </div>
 
-    <blockquote class="about-me-closer">
-        "Creo que la felicidad es una emoción efímera, lo que importa es la plenitud. La plenitud es un estilo de vida, en donde estas satisfecho con tu vida, sigues creciendo como persona, avanzas a tus objetivos y sobre todo puedes sobrellevar las adversidades de forma positiva."
-    </blockquote>
-
-</section>
-        <!-- Sección de Contacto para que el enlace del menú funcione -->
+        <!-- FILOSOFÍA  -->
+        <blockquote class="about-me-closer">
+            "Creo que la felicidad es una emoción efímera, lo que importa es la plenitud. La plenitud es un estilo de vida, en donde estas satisfecho con tu vida, sigues creciendo como persona, avanzas a tus objetivos y sobre todo puedes sobrellevar las adversidades de forma positiva."
+        </blockquote>
+        </section>
+        
+<!--CONTACTO -->
         <section id="contacto" class="contact">
             <h2>Contacto</h2>
             <p>Puedes contactarme en: alejandro_ab24@hotmail.com</a></p>

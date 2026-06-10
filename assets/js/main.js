@@ -1,5 +1,3 @@
-// main.js (EL CÓDIGO LIGERO)
-
 document.addEventListener('DOMContentLoaded', () => {
     
     // --- INICIALIZADORES LIGEROS ---
@@ -21,8 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ----------------------------------------------------------------------
-// 1. LÓGICA CANVAS HERO (Ramificaciones 2D)
-// 
+// LÓGICA CANVAS HERO (Ramificaciones 2D) 
 // ----------------------------------------------------------------------
 
 class Branch {
@@ -105,8 +102,7 @@ function setupHeroCanvas() {
 }
 
 // ----------------------------------------------------------------------
-// 2. LÓGICA DE SCROLL (Animaciones de Entrada Simples)
-// 
+// LÓGICA DE SCROLL (Animaciones de Entrada Simples)
 // ----------------------------------------------------------------------
 function setupScrollAnimations() {
     try {
@@ -126,7 +122,6 @@ function setupScrollAnimations() {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('is-animated');
-                    // observer.unobserve(entry.target); // Descomenta si solo quieres que se anime una vez
                 } else {
                     entry.target.classList.remove('is-animated'); 
                 }

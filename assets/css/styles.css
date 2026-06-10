@@ -42,7 +42,7 @@ h2 { font-size: 2.0rem; }
 h3 { font-size: 1.5rem; }
 
 /* ---------------------------------------------------------------------- */
-/* 2. ESTILOS DE TERCEROS (THREE.JS Y EFECTOS) */
+/* ESTILOS DE TERCEROS (THREE.JS Y EFECTOS) */
 /* ---------------------------------------------------------------------- */
 canvas {
     display: block;
@@ -54,7 +54,7 @@ canvas {
 }
 
 /* ---------------------------------------------------------------------- */
-/* 3. LAYOUT PRINCIPAL (FLEXBOX) */
+/* LAYOUT PRINCIPAL (FLEXBOX) */
 /* ---------------------------------------------------------------------- */
 
 main {
@@ -70,8 +70,7 @@ section {
 }
 
 /* ---------------------------------------------------------------------- */
-/* 4. CABECERA Y NAVEGACIÓN (HEADER/NAV) */
-/*
+/* CABECERA Y NAVEGACIÓN (HEADER/NAV) */
 /* ---------------------------------------------------------------------- */
 
 .main-header {
@@ -151,7 +150,7 @@ section {
     pointer-events: none; /* Aseguramos que no interfiera */
 }
 
-/* Asegurar que el contenido del hero esté delante del canvas */
+/* Aseguramos que el contenido del hero esté delante del canvas */
 .hero #perfil,
 .hero h1,
 .hero .subtitle {
@@ -215,7 +214,7 @@ section {
 }
 
 /* ---------------------------------------------------------------------- */
-/* 6. SECCIÓN EXPERIENCIA */
+/* SECCIÓN EXPERIENCIA */
 /* ---------------------------------------------------------------------- */
 .experience {
     padding-top: 2rem;
@@ -269,7 +268,7 @@ section {
 
 
 /* ---------------------------------------------------------------------- */
-/* 7. SECCIÓN PROYECTOS */
+/* SECCIÓN PROYECTOS */
 /* ---------------------------------------------------------------------- */
 .project-list {
     list-style: none;
@@ -339,7 +338,6 @@ section {
 .project-description {
     color: #aaa;
     margin-bottom: 1rem;
-    /* CAMBIO: Eliminamos 'flex-grow: 1' que ya no es necesario sin height: 100% */
 }
 .project-links {
     display: flex;
@@ -381,7 +379,7 @@ section {
 }
 
 /* ---------------------------------------------------------------------- */
-/* 8. SECCIÓN HABILIDADES (ACTUALIZADO: ESFERAS 3D) */
+/* 8. SECCIÓN HABILIDADES*/
 /* ---------------------------------------------------------------------- */
 .skills {
     text-align: center; /* Centrar el H2 */
@@ -412,22 +410,22 @@ section {
     /* El gradiente que simula la esfera */
     /* Luz desde arriba a la izquierda (30% 30%) */
      background: radial-gradient(circle at 30% 30%, 
-        rgba(170, 170, 230, 0.8), /* CAMBIO: Luz más brillante y opaca */
-        rgba(141, 141, 217, 0.4), /* CAMBIO: Medio más opaco */
-        rgba(2, 2, 39, 0.7) 80%   /* Sombra (el color de fondo --color-secondary) */
+        rgba(170, 170, 230, 0.8), 
+        rgba(141, 141, 217, 0.4), 
+        rgba(2, 2, 39, 0.7) 80%   
     );
     
     border-radius: 50%; 
     
-    /* CAMBIO: Sombra interna para dar profundidad */
+    /* Sombra interna para dar profundidad */
     box-shadow: 
         inset 0 0 10px rgba(0, 0, 0, 0.5), /* Sombra interna oscura */
-        0 0 20px rgba(141, 141, 217, 0.5); /* CAMBIO: Brillo exterior más fuerte */
+        0 0 20px rgba(141, 141, 217, 0.5); /* Brillo exterior más fuerte */
 
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
-/* CAMBIO: El "brillo" (reflejo de luz) */
+/* El "brillo" (reflejo de luz) */
 .skills-list li::before {
     content: '';
     position: absolute;
@@ -435,7 +433,7 @@ section {
     left: 20px;
     width: 30px; /* Tamaño del reflejo */
     height: 15px;
-    background: rgba(255, 255, 255, 0.5); /* CAMBIO: Reflejo más opaco */
+    background: rgba(255, 255, 255, 0.5); /* Reflejo más opaco */
     border-radius: 50%;
     filter: blur(5px); /* Difuminado para suavizar */
     transform: rotate(-30deg); /* Ángulo del reflejo */
@@ -455,7 +453,7 @@ section {
     height: auto;
     max-width: 55px; /* Tamaño del icono */
     object-fit: contain;
-    /* CAMBIO: Poner el icono encima del brillo */
+    /* Poner el icono encima del brillo */
     position: relative;
     z-index: 2; 
     /* Efecto sutil para el icono */
@@ -469,7 +467,7 @@ section {
 }
 
 /* ---------------------------------------------------------------------- */
-/* 9. SECCIÓN SOBRE MÍ*/
+/* SECCIÓN SOBRE MÍ*/
 /* ---------------------------------------------------------------------- */
 .about-me {
     text-align: center;
@@ -570,7 +568,7 @@ section {
     transition: filter 0.3s ease-in-out;
 }
 .profile-image-container:hover #perfil_1 {
-    filter: brightness(1) contrast(1); /* Vuelve a normal en hover */
+    filter: brightness(1) contrast(1); 
 }
 
 /* Efecto "glitch" o destello sobre la imagen */
